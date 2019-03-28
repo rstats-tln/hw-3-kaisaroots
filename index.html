@@ -11,7 +11,7 @@
 
 <meta name="author" content="Kaisa Roots" />
 
-<meta name="date" content="2019-03-12" />
+<meta name="date" content="2019-03-28" />
 
 <title>dplyr filter homework</title>
 
@@ -372,7 +372,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">dplyr filter homework</h1>
 <h4 class="author"><em>Kaisa Roots</em></h4>
-<h4 class="date"><em>2019-03-12</em></h4>
+<h4 class="date"><em>2019-03-28</em></h4>
 
 </div>
 
@@ -446,6 +446,7 @@ $(document).ready(function () {
 <ul>
 <li>have genome of over 10000kb</li>
 </ul>
+<p>I noticed that the genome size in this data set is marked either as 1.000 kb (with dot separator) or 1000 kb (without separators), hence, I used both variants to filter out genome sizes over 10000 kb.</p>
 <pre class="r"><code>filter(viruses, size_kb &gt;= 10000 | size_kb &gt;= 10.000)</code></pre>
 <pre><code>## # A tibble: 13,542 x 15
 ##    organism_name tax_id bioproject_acce… bioproject_id group subgroup
@@ -486,6 +487,7 @@ $(document).ready(function () {
 <ul>
 <li>are from plants and environment</li>
 </ul>
+<p>I filter viruses that are either from plants or from the environment.</p>
 <pre class="r"><code>filter(viruses, host == &quot;plants&quot; | host == &quot;environment&quot;)</code></pre>
 <pre><code>## # A tibble: 2,816 x 15
 ##    organism_name tax_id bioproject_acce… bioproject_id group subgroup
@@ -506,7 +508,7 @@ $(document).ready(function () {
 <ul>
 <li>were released between 01. January 1980 - 01. January 1990, including these days:</li>
 </ul>
-<pre class="r"><code>filter(viruses, release_date &gt; &quot;1980-01-01&quot;, release_date &lt; &quot;1990-01-01&quot;)</code></pre>
+<pre class="r"><code>filter(viruses, release_date &gt;= &quot;1980-01-01&quot;, release_date &lt;= &quot;1990-01-01&quot;)</code></pre>
 <pre><code>## # A tibble: 113 x 15
 ##    organism_name tax_id bioproject_acce… bioproject_id group subgroup
 ##    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   
@@ -527,6 +529,8 @@ $(document).ready(function () {
 <li>there is also between() function in dplyr.</li>
 </ol>
 <p>What does it do? Run ?between How can you use it to find viruses with genomes between 1 to 2 kb?</p>
+<pre class="r"><code>?between</code></pre>
+<p>between() is a shortcut for &gt;= &amp; &lt;=.</p>
 <pre class="r"><code>filter(viruses, between(size_kb, 1, 2))</code></pre>
 <pre><code>## # A tibble: 4,675 x 15
 ##    organism_name tax_id bioproject_acce… bioproject_id group subgroup
